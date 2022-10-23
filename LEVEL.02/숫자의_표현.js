@@ -12,3 +12,20 @@ function solution(n){
 // 약수 3은 연속하는 3개의 자연수 합으로 표현 가능함을 의미 -> 4+5+6
 // 약수 5는 연속하는 5개의 자연수 합으로 표현 가능함을 의미 -> 1+2+3+4+5
 // 약수 15는 모든 홀수(2n+1)는 n+(n+1)로 표현 가능함을 의미 -> 7+8
+
+
+
+// 투포인터로 문제 풀기
+function solution(n){
+  let answer = 0;
+  let right = 1, sum = 1;
+  for(let left = 1; left <=n; left++){
+    while(sum < n){
+      right++;
+      sum+=right;
+    }
+    if(sum===n) answer++;
+    sum-=left;
+  }
+  return answer;
+}
