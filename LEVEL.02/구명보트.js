@@ -14,3 +14,24 @@ function solution(people, limit){
 // 가장 무게가 많은 사람(배열의 첫번쨰 요소)과 몸무게가 가장 적은 사람(배열의 마지막 요소)의 합과 무게 제한(limit)을 비교.
 // 만약 두사람의 합이 무게 제한보다 작으면, answer에 1을 더하고 두번째로 몸무게가 많은 사람고 두번째로 가벼운 사람의 합을 비교한다.
 // 반면 무게 합이 제한을 넘을 경우 answer에 1을 더하고, 두번째로 무거운 사람과 가장 가벼운 사람의 몸무게와 무게 제한을 비교한다. 
+
+
+
+// 투포인터로 풀이 (새로운 풀이 추가)
+function solution(people, limit){
+    let answer = 0;
+    people.sort((a,b) => a-b);
+    let right = people.length -1;
+    let left = 0;
+    while(left<right){
+        if(people[left]+people[right] > limit){
+            right--
+        }else{
+            right--;
+            left++;
+        }
+        answer++
+    }
+    if(left===right) answer++;
+    return answer;
+}
