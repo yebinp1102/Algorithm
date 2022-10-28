@@ -19,3 +19,14 @@ function solution(n, a, b){
 // A는 첫번째 라운드에서 승리하면, 참가번호 2번으로 갱신되고, B는 승리하면 참가번호 4로 갱신된다.
 // 두번째 라운드에서 A는 승리 후, 1번으로 배정 받고, B는 2를 배정 받는다.
 // 세번째 라운드에서 A와 B 참가자는 마침내 만나게 된다. 따라서 solution 함수가 return 하는 값은 3이 된다. 
+
+
+
+// while문 대신 for문을 사용한 다른 풀이
+function solution(n,a,b){
+  for(let i=1; i<n; i++){    // i는 몇번째 라운드인지 의미함
+    a=Math.ceil(a/2);
+    b=Math.ceil(b/2);
+    if(a===b) return i
+  }
+}
