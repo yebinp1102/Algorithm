@@ -32,3 +32,33 @@ function solution(s){
 // 만약 요소가 여는 괄호( (, {, [)이면 stack에 push하고 닫는 괄호(),},])면 stack의 가장 최근 push된 여는 괄호와 닫는 괄호가 일치하는지 확인한다.
 // 만약 일치한다면 다음 문자열도 계속 탐색하고, str의 모든 요소를 탐새 했을 때 모두 올바른 괄호면 flag가 1이니 answer에 + 1을 해준다.
 // 반면 일치하지 않는다면 해당 str 문자열을 올바르지 않은 괄호를 가지니 flag를 0으로 만든 for문을 빠져나와 다음 str(왼쪽으로 회전시킨)이 올바른 괄호인지 탐색하기 시작한다.
+
+
+
+// 다른 풀이 : 매핑 알고리즘 사용
+function solution(s){
+  if(s.length%2===1) return 0;
+  let answer = 0;
+  let stack = [];
+  const mapping = { "}" : "{", "]" : "[", ")" : "("};
+
+  for(let i=0; i<s.length; i++){
+    stack = [];
+    let flag = true;
+    let str = s.substring(i,s.length) + s.substring(0,i);
+    
+    for(let j=0; j<str.length; j++){
+      let braket = str[j];
+      if(braket === '(' || braket === '[' || braket === '{') stack.push(braket);
+      else{
+        const popped = stack.pop();
+        if(popped !== mapping[braket]){
+          flag = false;
+          break;
+        }
+      }
+    }
+    if(flag) answer++;
+  }
+  return answer;
+}
